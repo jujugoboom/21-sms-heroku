@@ -1,1 +1,1 @@
-web: gunicorn two1sms.wsgi --log-file -
+web: gunicorn two1sms.wsgi --log-level=info --log-file -
