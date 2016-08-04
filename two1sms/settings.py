@@ -36,7 +36,7 @@ WALLET = Two1Wallet.import_from_mnemonic(mnemonic=TWO1_WALLET_MNEMONIC)
 SECRET_KEY = '2yd+@v^bhb^*nn0ak!_y5rvd!ep@^y23gwz4*t7q(^)+(kyg#p'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
