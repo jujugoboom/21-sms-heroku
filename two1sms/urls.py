@@ -19,5 +19,6 @@ from sms import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^buy', views.buy)
+    url(r'^buy', views.buy),
+    url(r'^manifest$', views.manifest),
 ]

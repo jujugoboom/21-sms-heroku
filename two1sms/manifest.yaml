@@ -1,0 +1,50 @@
+swagger: '2.0'
+info:
+  title: 21 SMS
+  description: A API to send a text message using bitcoin.
+  termsOfService: https://opensource.org/licenses/MIT
+  x-21-usage: ''
+  x-21-quick-buy: |
+    $ 21 buy url "aqueous-spire-56268.herokuapp.com/buy --data '{"phone": "123-456-7890", "text": "I bought this text with Bitcoin!"}'"
+
+    # Output
+    # {
+    #     "from": "+14433455051",
+    #     "message": "I bought this text with Bitcoin!",
+    #     "to": "+11234567890"
+    # }
+  x-21-category: utilities
+  x-21-app-image: 'https://cdn.filepicker.io/api/file/PUU3Sjy3QUibbOY7sRoi'
+  x-21-total-price:
+    min: 2500
+    max: 2500
+  contact:
+    name: Justin Covell
+    email: me@justincovell.net
+    url: https://justincovell.net
+  license:
+    name: MIT LICENSE
+    url: https://opensource.org/licenses/MIT
+  x-21-keywords:
+    - sms
+    - heroku
+    - django
+    - phone
+    - text
+  version: '0.1'
+host: aqueous-spire-56268.herokuapp.com
+schemes:
+  - https
+basePath: /
+x-21-manifest-path: /manifest
+paths:
+  /buy:
+    post:
+      summary: send a text message to a given phone number
+      produces:
+        - text/plain
+      responses:
+        200:
+          description: a message send confirmation
+          schema:
+            type: text

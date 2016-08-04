@@ -1,11 +1,13 @@
 from django.shortcuts import render
 from twilio.rest import TwilioRestClient
 from two1.bitserv.django import payment
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from rest_framework.decorators import api_view
 import os
 import phonenumbers
 import json
+import yaml
+from two1sms import settings
 
 # Create your views here.
 
@@ -43,3 +45,9 @@ def convert_to_e164(raw_phone):
     phone_representation = phonenumbers.parse(raw_phone, parse_type)
     return phonenumbers.format_number(phone_representation,
                                       phonenumbers.PhoneNumberFormat.E164)
+
+
+@api_view(['GET'])
+def manifest(request):
+    with open(settings.BASE_DIR + "/hello/manifest.yaml", 'r') as infile:
+        return JsonResponse(yaml.load(infile), status=200)
