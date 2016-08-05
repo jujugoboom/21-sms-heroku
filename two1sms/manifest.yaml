@@ -5,7 +5,7 @@ info:
   termsOfService: https://opensource.org/licenses/MIT
   x-21-usage: ''
   x-21-quick-buy: |
-    $ 21 buy url aqueous-spire-56268.herokuapp.com/buy --data '{"phone": "123-456-7890", "text": "I bought this text with Bitcoin!"}'
+    $ 21 buy https://aqueous-spire-56268.herokuapp.com/buy --data '{"phone": "123-456-7890", "text": "I bought this text with Bitcoin!"}'
 
     # Output
     # {
