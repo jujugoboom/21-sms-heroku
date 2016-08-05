@@ -49,5 +49,5 @@ def convert_to_e164(raw_phone):
 
 @api_view(['GET'])
 def manifest(request):
-    with open(settings.BASE_DIR + "/hello/manifest.yaml", 'r') as infile:
+    with open(settings.BASE_DIR + "/two1sms/manifest.yaml", 'r') as infile:
         return JsonResponse(yaml.load(infile), status=200)
