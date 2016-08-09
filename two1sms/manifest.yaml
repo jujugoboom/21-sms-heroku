@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   title: 21 SMS
-  description: A API to send a text message using bitcoin.
+  description: An API to send SMS using bitcoin.
   termsOfService: https://opensource.org/licenses/MIT
   x-21-usage: ''
   x-21-quick-buy: |
@@ -27,8 +27,6 @@ info:
     url: https://opensource.org/licenses/MIT
   x-21-keywords:
     - sms
-    - heroku
-    - django
     - phone
     - text
   version: '0.1'
