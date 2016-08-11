@@ -9,18 +9,22 @@ import json
 import yaml
 from two1sms import settings
 from twilio.rest.exceptions import TwilioRestException
+from twilio.rest.lookups import TwilioLookupsClient
 
 # Create your views here.
 
 client = TwilioRestClient(account=os.environ.get('TWILIO_ACCOUNT'),
                           token=os.environ.get('TWILIO_AUTH_TOKEN'))
 
+validationclient = TwilioLookupsClient(account=os.environ.get('TWILIO_ACCOUNT'),
+                                       token=os.environ.get('TWILIO_AUTH_TOKEN'))
+
 
 @api_view(['POST'])
 def start(request):
     to = ""
     try:
-        response = client.phone_numbers.get(request.data['phone'])
+        response = validationclient.phone_numbers.get(request.data['phone'])
         to = response.phone_number
     except TwilioRestException as e:
         data = {"error": "number provided was invalid"}
