@@ -8,6 +8,7 @@ import phonenumbers
 import json
 import yaml
 from two1sms import settings
+from twilio.rest.exceptions import TwilioRestException
 
 # Create your views here.
 
@@ -16,10 +17,22 @@ client = TwilioRestClient(account=os.environ.get('TWILIO_ACCOUNT'),
 
 
 @api_view(['POST'])
+def start(request):
+    to = ""
+    try:
+        response = client.phone_numbers.get(request.data['phone'])
+        to = response.phone_number
+    except TwilioRestException as e:
+        data = {"error": "number provided was invalid"}
+        json_data = json.dumps(data)
+        return json_data
+    message = message = request.data['text']
+    return buy(request, to, message)
+
+
+@api_view(['POST'])
 @payment.required(2500)
-def buy(request):
-    to = convert_to_e164(request.data['phone'])
-    message = request.data['text']
+def buy(request, to, message):
     available_numbers = client.phone_numbers.list()
     if len(available_numbers) < 1:
         return HttpResponse("This endpoint is down right now. Please try again later", status=500)
