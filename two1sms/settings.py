@@ -38,7 +38,7 @@ SECRET_KEY = '2yd+@v^bhb^*nn0ak!_y5rvd!ep@^y23gwz4*t7q(^)+(kyg#p'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["aqueous-spire-56268.herokuapp.com"]
 
 
 # Application definition
