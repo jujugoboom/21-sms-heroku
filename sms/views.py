@@ -25,7 +25,7 @@ def start(request):
     except TwilioRestException as e:
         data = {"error": "number provided was invalid"}
         json_data = json.dumps(data)
-        return json_data
+        return HttpResponse(json_data, status=500)
     message = message = request.data['text']
     return buy(request, to, message)
 
@@ -43,6 +43,7 @@ def buy(request, to, message):
     data = {"to": to, "from": from_number, "message": message}
     json_data = json.dumps(data)
     return HttpResponse(json_data, status=200)
+
 
 def convert_to_e164(raw_phone):
     if not raw_phone:
