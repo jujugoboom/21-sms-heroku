@@ -21,7 +21,5 @@ from auction import views as auctionviews
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^buy', smsviews.start),
-    url(r'^manifest$', smsviews.manifest),
-    url(r'^auction/bid', auctionviews.start),
-    url(r'^auction/price', auctionviews.getcurrentprice)
+    url(r'^manifest$', smsviews.manifest)
 ]
