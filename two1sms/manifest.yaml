@@ -1,48 +1,43 @@
-swagger: '2.0'
+basePath: /
+host: aqueous-spire-56268.herokuapp.com
 info:
-  title: 21 SMS
+  contact: {email: me@justincovell.net, name: Justin Covell, url: 'https://justincovell.net'}
   description: An API to send SMS using bitcoin.
+  license: {name: MIT LICENSE, url: 'https://opensource.org/licenses/MIT'}
   termsOfService: https://opensource.org/licenses/MIT
-  x-21-usage: ''
-  x-21-quick-buy: |
-    $ 21 buy https://aqueous-spire-56268.herokuapp.com/buy --data '{"phone": "123-456-7890", "text": "I bought this text with Bitcoin!"}'
+  title: 21 SMS
+  version: '0.1'
+  x-21-app-image: https://cdn.filepicker.io/api/file/PUU3Sjy3QUibbOY7sRoi
+  x-21-category: utilities
+  x-21-keywords: [sms, phone, text]
+  x-21-quick-buy: '$ 21 buy https://aqueous-spire-56268.herokuapp.com/buy --data ''{"phone":
+    "123-456-7890", "text": "I bought this text with Bitcoin!"}''
+
 
     # Output
+
     # {
+
     #     "from": "+14433455051",
+
     #     "message": "I bought this text with Bitcoin!",
+
     #     "to": "+11234567890"
+
     # }
-  x-21-category: utilities
-  x-21-app-image: 'https://cdn.filepicker.io/api/file/PUU3Sjy3QUibbOY7sRoi'
-  x-21-total-price:
-    min: 2500
-    max: 2500
-  contact:
-    name: Justin Covell
-    email: me@justincovell.net
-    url: https://justincovell.net
-  license:
-    name: MIT LICENSE
-    url: https://opensource.org/licenses/MIT
-  x-21-keywords:
-    - sms
-    - phone
-    - text
-  version: '0.1'
-host: aqueous-spire-56268.herokuapp.com
-schemes:
-  - https
-basePath: /
-x-21-manifest-path: /manifest
+
+    '
+  x-21-total-price: {max: 2500, min: 2500}
+  x-21-usage: ''
 paths:
   /buy:
     post:
-      summary: send a text message to a given phone number
-      produces:
-        - text/plain
+      produces: [text/plain]
       responses:
         200:
           description: a message send confirmation
-          schema:
-            type: text
+          schema: {type: text}
+      summary: send a text message to a given phone number
+schemes: [https]
+swagger: '2.0'
+x-21-manifest-path: /manifest

@@ -1,8 +1,8 @@
 """Support for testing."""
 
-from django.test.simple import DjangoTestSuiteRunner
+from django.test.runner import DiscoverRunner
 
-class DatabaselessTestRunner(DjangoTestSuiteRunner):
+class DatabaselessTestRunner(DiscoverRunner):
     """A test suite runner that does not set up and tear down a database."""
 
     def setup_databases(self):

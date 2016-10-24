@@ -131,4 +131,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-TEST_RUNNER = 'testing.DatabaselessTestRunner'
+TEST_RUNNER = 'two1sms.testing.DatabaselessTestRunner'

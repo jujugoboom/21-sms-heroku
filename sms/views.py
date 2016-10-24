@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from twilio.rest import TwilioRestClient
 from two1.bitserv.django import payment
 from django.http import HttpResponse, JsonResponse
@@ -31,15 +30,15 @@ def start(request):
         json_data = json.dumps(data)
         return HttpResponse(json_data, status=500)
     message = message = request.data['text']
-    return buy(request, to, message)
+    available_numbers = client.phone_numbers.list()
+    if len(available_numbers) < 1:
+        return HttpResponse("This endpoint is down right now. Please try again later", status=500)
+    return buy(request, to, message, available_numbers)
 
 
 @api_view(['POST'])
 @payment.required(2500)
-def buy(request, to, message):
-    available_numbers = client.phone_numbers.list()
-    if len(available_numbers) < 1:
-        return HttpResponse("This endpoint is down right now. Please try again later", status=500)
+def buy(request, to, message, available_numbers):
     from_number = available_numbers[0].phone_number
     client.messages.create(from_=from_number,
                            to=to,

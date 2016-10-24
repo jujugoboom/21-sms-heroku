@@ -16,9 +16,12 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from sms import views as smsviews
+from auction import views as auctionviews
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^buy', smsviews.start),
     url(r'^manifest$', smsviews.manifest),
+    url(r'^auction/bid', auctionviews.start),
+    url(r'^auction/price', auctionviews.getcurrentprice)
 ]
