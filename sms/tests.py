@@ -1,17 +1,21 @@
 from django.test import TestCase
 from sms import views
 from django.test.client import RequestFactory
+import unittest
+from twilio.rest import TwilioRestClient
+import os
+import datetime
+import time
 
 # Create your tests here.
 
 
 class SmsTestCase(TestCase):
     rf = RequestFactory()
-    #wallet = settings.WALLET
-    #requests = BitTransferRequests(wallet)
+    testNumber = os.environ.get("TEST_PHONE_NUMBER")
 
     def testStartSuccess(self):
-        request = self.rf.post("/buy/", {"phone": "410-349-7954", "text": "This is a successful test"})
+        request = self.rf.post("/buy/", {"phone": self.testNumber, "text": "This is a successful test"})
         response = views.start(request)
         self.assertEqual(response.status_code, 402)
 
@@ -32,18 +36,14 @@ class SmsTestCase(TestCase):
         result = views.convert_to_e164("2345678900")
         self.assertEqual(result, "+12345678900")
 
-    '''def testBuy(self):
-        request = self.rf.post("/buy/", {"phone": "410-349-7954", "text": "This is a successful test"})
-        response = views.buy(request, "+14103497954", "Test Successful")
-        print(response._headers)
-        for header in response._headers:
-            response._headers[header] = response._headers[header][1]
-        response.headers = response._headers
-        response.url = "http://testserver/payments/channel"
-        headers = self.requests.make_402_payment(response=response, max_price=10000)
-        newrequest = self.rf.post("/buy/", {"phone": "410-349-7954", "text": "This is a successful test"})
-        for key in headers:
-            newrequest.META[key] = headers[key]
-        print(newrequest.META)
-        newresponse = views.buy(newrequest, "+14103497954", "Test Successful")
-        print(newresponse.status_code)'''
+    @unittest.mock.patch('two1.bitserv.django.decorator.Payment.contains_payment', return_value=True)
+    def testBuySuccess(self, *args):
+        request = self.rf.post("/buy/", {"phone": self.testNumber, "text": "This is a successful test"})
+        client = TwilioRestClient(account=os.environ.get('TWILIO_ACCOUNT'),
+                                  token=os.environ.get('TWILIO_AUTH_TOKEN'))
+        available_numbers = client.phone_numbers.list()
+        if len(available_numbers) < 1:
+            self.fail('No numbers in twilio')
+        startTime = datetime.datetime.now()
+        response = views.buy(request, self.testNumber, "Test Successful", available_numbers)
+        self.assertEqual(response.status_code, 200)
