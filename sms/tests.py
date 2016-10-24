@@ -1,8 +1,6 @@
 from django.test import TestCase
 from sms import views
 from django.test.client import RequestFactory
-from two1.bitrequests import BitTransferRequests
-from two1sms import settings
 
 # Create your tests here.
 
