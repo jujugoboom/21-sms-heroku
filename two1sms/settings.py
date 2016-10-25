@@ -132,3 +132,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 TEST_RUNNER = 'two1sms.testing.DatabaselessTestRunner'
+
+MIGRATION_MODULES = {"two1sms": None, "sms": None}
