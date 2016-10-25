@@ -12,4 +12,4 @@ env:
 cache:
 - pip
 install: sudo pip install -r requirements.txt
-script: python manage.py test
+script: sudo python manage.py test
