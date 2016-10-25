@@ -11,4 +11,4 @@ env:
 cache:
 - pip
 install: pip install -r requirements.txt
-script: python manage.py test
+script: ./manage.py --settings=two1sms.settings test
