@@ -15,21 +15,27 @@ class SmsTestCase(unittest.TestCase):
         self.app = sms.app.test_client()
 
     def testStartSuccess(self):
-        response = self.post("/buy", {"phone": self.testNumber, "text": "This is a successful test"})
+        response = self.post("/buy", {"phone": self.testNumber,
+                                      "text": "This is a successful test"})
         self.assertEqual(response.status_code, 402)
 
     def testStartFail(self):
-        response = self.post("/buy", {"phone": "122122", "text": "This is a successful test"})
+        response = self.post("/buy", {"phone": "122122",
+                                      "text": "This is a successful test"})
         error = {"error": "number provided was invalid"}
         self.assertEqual(response.data.decode("UTF-8"), json.dumps(error))
 
-    @mock.patch('two1.bitserv.flask.decorator.Payment.contains_payment', return_value=True)
+    @mock.patch('two1.bitserv.flask.decorator.Payment.contains_payment',
+                return_value=True)
     def testBuySuccess(self, *args):
-        response = self.post("/buy", {"phone": self.testNumber, "text": "This is a successful test"})
+        response = self.post("/buy", {"phone": self.testNumber,
+                                      "text": "This is a successful test"})
         self.assertEqual(response.status_code, 200)
 
     def post(self, url, data):
-        return self.app.post(url, data=json.dumps(data), content_type='application/json')
+        return self.app.post(url,
+                             data=json.dumps(data),
+                             content_type='application/json')
 
 if __name__ == '__main__':
     dotenv_file = ".env"

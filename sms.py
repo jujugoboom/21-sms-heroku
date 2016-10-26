@@ -10,6 +10,7 @@ from twilio.rest.exceptions import TwilioRestException
 from twilio.rest.lookups import TwilioLookupsClient
 from two1.wallet import Two1Wallet
 
+# Load .env file for local use
 dotenv_file = ".env"
 if os.path.isfile(dotenv_file):
     dotenv.load_dotenv(dotenv_file)
