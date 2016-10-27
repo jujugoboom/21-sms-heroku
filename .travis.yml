@@ -2,8 +2,7 @@ language: python
 python:
 - '3.5'
 
-services:
-– postgresql
+services: postgresql
 
 
 env:
