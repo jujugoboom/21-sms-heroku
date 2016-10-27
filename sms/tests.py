@@ -44,6 +44,5 @@ class SmsTestCase(TestCase):
         available_numbers = client.phone_numbers.list()
         if len(available_numbers) < 1:
             self.fail('No numbers in twilio')
-        startTime = datetime.datetime.now()
         response = views.buy(request, self.testNumber, "Test Successful", available_numbers)
         self.assertEqual(response.status_code, 200)
