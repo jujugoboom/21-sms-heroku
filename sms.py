@@ -38,6 +38,8 @@ def start():
         return "You need to provide post data", 500
     try:
         response = validationclient.phone_numbers.get(post_data['phone'])
+        if(response.country_code != "US"):
+            return "Only numbers in the US are supported"
         to = response.phone_number
     except TwilioRestException as e:
         data = {"error": "number provided was invalid"}

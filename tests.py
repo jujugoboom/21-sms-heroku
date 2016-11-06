@@ -19,6 +19,12 @@ class SmsTestCase(unittest.TestCase):
                                       "text": "This is a successful test"})
         self.assertEqual(response.status_code, 402)
 
+    def testInternationalNumber(self):
+        response = self.post("/buy", {"phone": +421234567890,
+                                      "text": "This is a successful test"})
+        error = "Only numbers in the US are supported"
+        self.assertEqual(response.data.decode("UTF-8"), error)
+
     def testStartFail(self):
         response = self.post("/buy", {"phone": "122122",
                                       "text": "This is a successful test"})
