@@ -11,6 +11,8 @@ env:
 cache:
 - pip
 install: pip install -r requirements.txt
-script: python tests.py 
+script: 
+  - python tests.py
+  - coverage run tests.py 
 after_success:
   - CODECLIMATE_REPO_TOKEN=b849455dc676274d2c178f9362cd01d8864bbf4203f97c833fb918a2d2f36f62 codeclimate-test-reporter
