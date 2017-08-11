@@ -69,5 +69,6 @@ def manifest():
         manifest = yaml.load(f)
     return json.dumps(manifest)
 
+
 if __name__ == '__main__':
     app.run()
