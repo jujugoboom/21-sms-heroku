@@ -11,3 +11,4 @@ hashids==1.1.0
 two1==3.9.10
 twilio==5.4.0
 phonenumbers==7.4.4
+codeclimate-test-reporter
